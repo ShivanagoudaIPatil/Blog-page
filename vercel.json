@@ -1,9 +1,15 @@
 {
   "version": 2,
   "builds": [
-    { "src": "RESTClass/index.js", "use": "@vercel/node" }
+    {
+      "src": "index.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["views/**", "public/**"]
+      }
+    }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/" }
+    { "src": "/(.*)", "dest": "/index.js" }
   ]
 }
