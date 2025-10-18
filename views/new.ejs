@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create new post</title>
+</head>
+<body>
+    <form method="post" action="/posts" enctype="multipart/form-data">        <!-- send data to post req -->
+        <input placeholder="Enter username" name="username"><br><br>
+        <textarea name="caption" placeholder="write your post" id=""></textarea>
+        <input type="file" name="image" accept="image/*" >
+        <button>Submit</button>
+    </form>
+</body>
+</html>
