@@ -5,7 +5,7 @@ REST is an architectural style that defines a set of constraints to be used for 
 
 const express = require("express")
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 const path = require("path");
 const { v4: uuidv4 } = require('uuid');// required the uuid from uuid package, uuid package gives unique id
 const multer =require("multer");
@@ -25,7 +25,7 @@ app.use(methodOverride('_method'))          //this will override the req
 
 app.use(express.urlencoded({extended:true}))//makes post readable for express
 
-app.set("view engime","ejs");             // view engine is set to ejs
+app.set("view engine","ejs");             // view engine is set to ejs
 app.set("views", path.join(__dirname,"views"));  //default path set views even you run code outside the dir
 
 app.use(express.static(path.join(__dirname,"public")));// path set for publc, even you run code outside the dir no error
@@ -36,7 +36,7 @@ let posts = [                                // all posts are saved here
         id:uuidv4(),                    //uuidv4() will create new unique id everytime when server is refreshed
         username:"Akshay",
         image:"/uploads/botting.png",
-        caption:"fun",
+        caption:"Teamwork on the rapids! #RiverRafting",
         count:10,
         comments:["nice bro","booting on peak"],
     },
@@ -44,7 +44,7 @@ let posts = [                                // all posts are saved here
         id:uuidv4(),
         username:"Shivanagouda Patil",
         image:"/uploads/dandali_bus_photo.png",
-        caption:"travelling",
+        caption:"On the way to Pinci with the gang! #RoadTripVibes",
         count:11,
         comments:["full dj","travel"]
     },
@@ -68,9 +68,9 @@ updaTE-->PUT,PATCH
 DELTE--> DELETE
 */
 
-// app.listen(port,()=>{               //create a server
-//     console.log("port 8080")
-// })
+app.listen(port,()=>{               //create a server
+    console.log("port 8080")
+})
 
 module.exports = app;
 
