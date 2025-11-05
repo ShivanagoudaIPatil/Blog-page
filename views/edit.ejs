@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/edit.css">
     <title>EDit Post</title>
 </head>
 <body>
@@ -14,11 +14,14 @@
     <p>Post id: <%=post.id%></p>
     <p class="username">post username: @<%=post.username%></p>
     <img src="<%=post.image%>" alt="" class="image">
+    <br>
     <!-- after submtting form, PATCH req is sent to server -->
     <!-- <form method="post" action="/posts/<%=post.id%>?_method=PATCH" enctype="multipart/form-data" >you cant write method="get" it will not work -->
     <form method="post" action="/posts/<%=post.id%>?_method=PATCH" enctype="multipart/form-data"></form>
-        <input type="file" name="image" accept="image/*">
-        <textarea name="caption" id="" rows="10" cols="35"><%=post.caption%></textarea>
+        <input type="file" name="image" accept="image/*" class="selectFile">
+        <br>
+        <textarea name="caption" id="" rows="5" cols="5" class="caption"><%=post.caption%></textarea>
+        <br>
         <button>Submit</button>
         <br>
         <button id="GO_BACK">GO BACK</button>
