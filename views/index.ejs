@@ -46,9 +46,11 @@
                             </span>
                             <!-- <button>Share</button> -->
                             <br>
-                            <a href="http://localhost:8080/posts/<%=post.id%>" class="link detail">See in detail</a>
+                            <!-- <a href="http://localhost:8080/posts/<%=post.id%>" class="link detail">See in detail</a> -->
+                            <a href="/posts/<%=post.id%>" class="link detail">See in detail</a>
                             &nbsp
-                            <a href="http://localhost:8080/posts/<%=post.id%>/edit" class="link">Edit post</a>
+                            <!-- <a href="http://localhost:8080/posts/<%=post.id%>/edit" class="link">Edit post</a> -->
+                            <a href="/posts/<%=post.id%>/edit" class="link">Edit post</a>
                             <form method="post" action="/posts/<%=post.id%>?_method=DELETE">
                                 <button class="delete">Delete</button>
                             </form>
@@ -56,7 +58,8 @@
                         <hr id="hr">
             </div>
             <% } %>
-            <a href="http://localhost:8080/posts/new" class="link newPost">Create new posts</a>
+            <!-- <a href="http://localhost:8080/posts/new" class="link newPost">Create new posts</a> -->
+            <a href="/posts/new" class="link newPost">Create new posts</a>
     </div>
 
     <script src="app.js"></script>

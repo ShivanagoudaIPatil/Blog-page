@@ -15,7 +15,8 @@
     <p class="username">post username: @<%=post.username%></p>
     <img src="<%=post.image%>" alt="" class="image">
     <!-- after submtting form, PATCH req is sent to server -->
-    <form method="post" action="/posts/<%=post.id%>?_method=PATCH" enctype="multipart/form-data" ><!-- you cant write method="get" it will not work -->
+    <!-- <form method="post" action="/posts/<%=post.id%>?_method=PATCH" enctype="multipart/form-data" >you cant write method="get" it will not work -->
+    <form method="post" action="/posts/<%=post.id%>?_method=PATCH" enctype="multipart/form-data"></form>
         <input type="file" name="image" accept="image/*">
         <textarea name="caption" id="" rows="10" cols="35"><%=post.caption%></textarea>
         <button>Submit</button>
