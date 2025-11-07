@@ -1,4 +1,4 @@
-/**+
+/*
 REST- Representational State Transfer
 REST is an architectural style that defines a set of constraints to be used for creating web services.(REST are the rules to create api)
 */
@@ -19,6 +19,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 const methodOverride = require('method-override');  
+const mongoose = require('mongoose');
+const Post = require("./models/post")
 // Require the 'method-override' package to support HTTP methods like PATCH, DELETE, etc.
 // This is useful because HTML forms only support GET and POST methods.
 app.use(methodOverride('_method'))          //this will override the req
@@ -31,24 +33,31 @@ app.set("views", path.join(__dirname,"views"));  //default path set views even y
 app.use(express.static(path.join(__dirname,"public")));// path set for publc, even you run code outside the dir no error
 //express.static(): Serves static files.    express.__() is object 
 
-let posts = [                                // all posts are saved here
-    {
-        id:uuidv4(),                    //uuidv4() will create new unique id everytime when server is refreshed
-        username:"Akshay",
-        image:"/uploads/botting.png",
-        caption:"Teamwork on the rapids! #RiverRafting",
-        count:10,
-        comments:["nice bro","booting on peak"],
-    },
-    {
-        id:uuidv4(),
-        username:"Shivanagouda Patil",
-        image:"/uploads/dandali_bus_photo.png",
-        caption:"On the way to Pinci with the gang! #RoadTripVibes",
-        count:11,
-        comments:["full dj","travel"]
-    },
-]
+main().then(() => { console.log("connection is succesfull"); })
+    .catch(err => console.log(err));
+
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
+}
+
+// let posts = [                                // all posts are saved here
+//     {
+//         id:uuidv4(),                    //uuidv4() will create new unique id everytime when server is refreshed
+//         username:"Akshay",
+//         image:"/uploads/botting.png",
+//         caption:"Teamwork on the rapids! #RiverRafting",
+//         count:10,
+//         comments:["nice bro","booting on peak"],
+//     },
+//     {
+//         id:uuidv4(),
+//         username:"Shivanagouda Patil",
+//         image:"/uploads/dandali_bus_photo.png",
+//         caption:"On the way to Pinci with the gang! #RoadTripVibes",
+//         count:11,
+//         comments:["full dj","travel"]
+//     },
+// ]
 
 
 /**
@@ -80,10 +89,9 @@ app.get("/",(req,res)=>{     //home page api
 })
 
 //index(main)route
-app.get("/posts",(req,res)=>{    //this the api which gives all data and displayed here
-    res.render("index.ejs",{               //send file where all posts are seen on screen
-        posts,
-    });
+app.get("/posts",async (req,res)=>{    //this the api which gives all data and displayed here
+    let posts = Post.find();
+    res.render("index.ejs",{ posts });              //send file where all posts are seen on screen
 })
 
 //create route
@@ -95,8 +103,8 @@ app.get("/posts/new",(req,res)=>{    //  api for sending form for new post(from 
 app.post("/posts",upload.single("image"),(req,res)=>{                // api or post request to update the posts and hence also display on screen with help of above api
     let {username,caption}=req.body           // taking info from "form" recevied
     const image = req.file ? `/uploads/${req.file.filename}` : null
-    let id = uuidv4();                        // gives new unique id
-    posts.push({id,username,image,caption})         // update the posts array
+    // let id = uuidv4();                        // gives new unique id
+    posts.push({username,image,caption})         // update the posts array
     res.redirect("/posts")                    // redirecting to posts page,now new array(with new post is displayed), by deafualt get req is sent in redicting 
 })
 
