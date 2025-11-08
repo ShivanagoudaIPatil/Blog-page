@@ -40,24 +40,24 @@ async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/whatsapp');
 }
 
-// let posts = [                                // all posts are saved here
-//     {
-//         id:uuidv4(),                    //uuidv4() will create new unique id everytime when server is refreshed
-//         username:"Akshay",
-//         image:"/uploads/botting.png",
-//         caption:"Teamwork on the rapids! #RiverRafting",
-//         count:10,
-//         comments:["nice bro","booting on peak"],
-//     },
-//     {
-//         id:uuidv4(),
-//         username:"Shivanagouda Patil",
-//         image:"/uploads/dandali_bus_photo.png",
-//         caption:"On the way to Pinci with the gang! #RoadTripVibes",
-//         count:11,
-//         comments:["full dj","travel"]
-//     },
-// ]
+let posts = [                                // all posts are saved here
+    {
+        id:uuidv4(),                    //uuidv4() will create new unique id everytime when server is refreshed
+        username:"Akshay",
+        image:"/uploads/botting.png",
+        caption:"Teamwork on the rapids! #RiverRafting",
+        count:10,
+        comments:["nice bro","booting on peak"],
+    },
+    {
+        id:uuidv4(),
+        username:"Shivanagouda Patil",
+        image:"/uploads/dandali_bus_photo.png",
+        caption:"On the way to Pinci with the gang! #RoadTripVibes",
+        count:11,
+        comments:["full dj","travel"]
+    },
+]
 
 
 /**
@@ -90,7 +90,7 @@ app.get("/",(req,res)=>{     //home page api
 
 //index(main)route
 app.get("/posts",async (req,res)=>{    //this the api which gives all data and displayed here
-    let posts = Post.find();
+    // let posts = Post.find();
     res.render("index.ejs",{ posts });              //send file where all posts are seen on screen
 })
 
